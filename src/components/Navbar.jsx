@@ -51,14 +51,17 @@ export default function Navbar() {
               <Link href="/cart">
                 <MdOutlineShoppingBag color="white" size={30} />
               </Link>
-            </li>
+              </li>
             )}
             
-            <li>
-              <Link href="/account">
-                <IoMdNotificationsOutline color="white" size={30} />
-              </Link>
-            </li>
+            {isLogin && (
+              <li>
+                <Link href="/account">
+                  <IoMdNotificationsOutline color="white" size={30} />
+                </Link>
+              </li>
+            )}
+
             {!isLogin && (
               <li>
               <Link href="/login">
