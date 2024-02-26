@@ -8,14 +8,14 @@ export default function NavbarBottom() {
       <ul className="flex space-x-20">
         <li>
           <Link
-            href="/product/searchresult"
+            href="/product/productdetail"
             className="flex items-center text-white "
           >
             Filter <IoIosArrowDown />
           </Link>
         </li>
         <li>
-          <Link href="/" className="text-white">
+          <Link href="/product/searchresult" className="text-white">
             Produk terbaru
           </Link>
         </li>

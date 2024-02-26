@@ -5,7 +5,7 @@ import SearchProduct from '@/components/SearchProduct'
 import FilterBar from '@/components/FilterBar'
 import ProductCard from '@/components/ProductCard'
 
-export default function productdetail() {
+export default function searchresult() {
   return (
     <>
       <main className="bg-white">

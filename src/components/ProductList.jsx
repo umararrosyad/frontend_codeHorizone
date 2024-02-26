@@ -22,32 +22,57 @@ const renderStars = (rating) => {
 export default function ProductList({ products }) {
   console.log(products)
   return (
-    <div class="rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <a href="#">
-        <img
-          className="rounded w-[300px] h-[300px]"
-          src={products.product_galleries[0].photo_url}
-          alt={products.image}
-        />
-      </a>
-      <div class="flex flex-col">
-        <div className="mb-4">
-          <Link href="#">
-            <h1 className="text-lg font-bold text-black">{products.name}</h1>
-          </Link>
-        </div>
-        <div class="flex items-center justify-between">
-          <span class="text-sm font-bold text-gray-900 dark:text-white">
-            {products.price}
-          </span>
-        </div>
-        <div className="flex items-center">
-          <div className="mr-1">{renderStars(products.rating)}</div>
-          <Typography color="blue-gray" className="font-medium">
-            {products.rating}
-          </Typography>
+    <Link href={`/product/${product.id}`}>
+      <div className="rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <a href="#">
+          <img
+            className="rounded w-[200] h-[200]"
+            src={
+              products.product_galleries &&
+              products.product_galleries[0] &&
+              products.product_galleries[0].photo_url
+            }
+            alt={products.image}
+          />
+        </a>
+        <div className="flex flex-col">
+          <div className="mb-4">
+            <Link href="#">
+              <h1 className="text-lg font-bold text-black">{products.name}</h1>
+            </Link>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-bold text-gray-900 dark:text-white">
+              {' '}
+              Rp.
+              {products.product_variants && products.product_variants.length > 0
+                ? products.product_variants[0].price
+                : 'N/A'}
+            </span>
+          </div>
+          <div className="flex items-center">
+            <div className="mr-1">
+              {renderStars(
+                products.product_variants &&
+                  products.product_variants.length > 0
+                  ? products.product_variants[0].feedbacks &&
+                    products.product_variants[0].feedbacks.length > 0
+                    ? products.product_variants[0].feedbacks[0].rating
+                    : 0
+                  : 0
+              )}
+            </div>
+            <Typography color="blue-gray" className="font-medium">
+              {products.product_variants && products.product_variants.length > 0
+                ? products.product_variants[0].feedbacks &&
+                  products.product_variants[0].feedbacks.length > 0
+                  ? products.product_variants[0].feedbacks[0].rating
+                  : 'N/A'
+                : 'N/A'}
+            </Typography>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
