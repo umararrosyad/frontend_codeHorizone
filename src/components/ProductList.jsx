@@ -22,9 +22,8 @@ const renderStars = (rating) => {
 export default function ProductList({ products }) {
   console.log(products)
   return (
-    <Link href={`/product/${product.id}`}>
+    <Link href={`/product/${products.id}`}>
       <div className="rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
           <img
             className="rounded w-[200] h-[200]"
             src={
@@ -34,12 +33,9 @@ export default function ProductList({ products }) {
             }
             alt={products.image}
           />
-        </a>
         <div className="flex flex-col">
           <div className="mb-4">
-            <Link href="#">
               <h1 className="text-lg font-bold text-black">{products.name}</h1>
-            </Link>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-sm font-bold text-gray-900 dark:text-white">
@@ -74,5 +70,6 @@ export default function ProductList({ products }) {
         </div>
       </div>
     </Link>
+    // <p>asdasdsad</p>
   )
 }
