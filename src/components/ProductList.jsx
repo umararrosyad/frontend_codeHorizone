@@ -22,7 +22,7 @@ const renderStars = (rating) => {
 export default function ProductList({ products }) {
   console.log(products)
   return (
-    <Link href={`/product/${products.id}`}>
+    <Link href={`/product/detail/${products.id}`}>
       <div className="rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <img
             className="rounded w-[200] h-[200]"
