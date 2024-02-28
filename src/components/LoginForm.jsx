@@ -43,7 +43,8 @@ const LoginForm = () => {
           theme: "light"
         });
       } else {
-        localStorage.setItem("token", response.data.data);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user_id", response.data.data.id);
       }
       event.target.reset();
 
