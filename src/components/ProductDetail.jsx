@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Rating } from '@material-tailwind/react'
 
-export default function ProductDetail() {
+export default function ProductDetail({productDetail}) {
+  console.log(productDetail.product_galleries[0]);
   return (
     <section className="w-full overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
       <div className="max-wl px-4 py-4 mx-auto lg:py-8 md:px-6">
@@ -12,7 +13,7 @@ export default function ProductDetail() {
             <div className="sticky top-0 overflow-hidden ">
               <div className="relative mb-6 lg:mb-10 lg:h-2/4 ">
                 <Image
-                  src="/images/product_1.png"
+                  src={productDetail.product_galleries[0].photo_url}
                   alt="Main Photo"
                   className="object-cover w-[600px] h-[600px] lg:h-full "
                   width={350}
@@ -82,8 +83,8 @@ export default function ProductDetail() {
           <div className="w-full px-4 md:w-1/2 ">
             <div className="lg:pl-20">
               <div className="mb-8 flex  flex-col space-y-2 ">
-                <h1 className="text-2xl font-bold text-button">Cotton Seed</h1>
-                <h1 className="mt-2 mb-6 text-2xl font-regular">Baju Bayi</h1>
+                <h1 className="text-2xl font-bold text-button">{productDetail.name}</h1>
+                <h1 className="mt-2 mb-6 text-2xl font-regular">{productDetail.name}</h1>
                 <p className="inline-block mb-8 text-2xl font-bold text-gray-700 dark:text-gray-400 ">
                   <span>Rp.175.000</span>
                 </p>
