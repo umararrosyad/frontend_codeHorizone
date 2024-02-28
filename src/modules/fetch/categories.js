@@ -1,7 +1,6 @@
 // const axios = require('axios');
 
 import { instance as axios } from "../axios";
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcwNjc5MDczNn0.crNpraUq0j84lSvWzqQAVdmx1JOWsZmRa4kwpChEpZU";
 const getAllCategories = async (page, searchTerm) => {
   try {
     const params = {

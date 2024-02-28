@@ -1,37 +1,43 @@
-export async function getStaticPaths() {
-  try {
-    // Fetch data from your API to get the dynamic paths
-    const response = await axios.get('http://localhost:4000/api/v1/products')
-    const products = response.data
+import React from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ProductDetail from "@/components/ProductDetail";
+import ReviewSection from "@/components/ReviewSection";
+import UserReviews from "@/components/UserReviews";
+import ProductCard from "@/components/ProductCard";
 
-    // Map products to an array of paths
-    const paths = products.map((product) => ({
-      params: { slug: product.id.toString() },
-    }))
-
-    return { paths, fallback: false }
-  } catch (error) {
-    console.error('Error fetching data:', error)
-    return { paths: [], fallback: false }
-  }
-}
-
-// Fungsi ini digunakan untuk mendapatkan data untuk setiap jalur.
-export async function getStaticProps({ params }) {
-  try {
-    // Fetch data based on the slug
-    const response = await axios.get(
-      `http://localhost:4000/api/v1/products/${params.slug}`
-    )
-    const product = response.data
-
-    return {
-      props: { product },
-    }
-  } catch (error) {
-    console.error('Error fetching data:', error)
-    return {
-      props: { product: {} },
-    }
-  }
+export default function productdetail() {
+  return (
+    <>
+      <main className="bg-white">
+        <section>
+          <div className="container">
+            <Navbar></Navbar>
+          </div>
+        </section>
+        <section>
+          <div className="container flex space-x-3 mx-auto pt-28">
+            <ProductDetail></ProductDetail>
+          </div>
+        </section>
+        {/* <section>
+          <div className="container flex space-x-3 mx-auto mb-20">
+            <ReviewSection />
+          </div>
+        </section> */}
+        {/* <section>
+          <div className="container flex space-x-3 mx-auto">
+            <UserReviews />
+          </div>
+        </section>
+        <h1 className="mx-auto ml-72 text-2xl font-bold mb-9">Produk Serupa</h1>
+        <section className="container mx-auto mb-20">
+          <ProductCard />
+        </section> */}
+        <section>
+          <Footer />
+        </section>
+      </main>
+    </>
+  );
 }

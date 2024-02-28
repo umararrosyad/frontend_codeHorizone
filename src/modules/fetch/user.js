@@ -23,13 +23,14 @@ const login = async (email, password) => {
   }
 };
 
-const register = async (email, password, name, phone_number) => {
+const register = async (email, password, name, phone_number, username) => {
   try {
     const requestData = {
       email,
       password,
       name,
       phone_number,
+      username
     };
 
     const response = await axios.post(`/api/v1/users/register`, requestData, {

@@ -5,17 +5,13 @@ import logo from '../../public/images/logo.svg'
 
 const signup = () => {
   return (
-    <main>
-      <section className="fixed w-full z-10 bg-primary">
-        <div className="flex justify-between items-center mx-20">
-          <Image src={logo} width={250} height={100} alt="/" />
+    <main className="bg-white p-5 flex justify-center items-center h-screen">
+      <div className="w-full h-full rounded-xl bg-primary flex justify-center items-center">
+        <div className="w-full flex flex-col gap-5 justify-center ">
+          <Image className="w-md mx-auto item h-auto" src={logo} alt="/" />
+          <RegisterForm/>
         </div>
-      </section>
-      <section className="bg-purple pt-20">
-        <div className="container mx-auto">
-          <RegisterForm />
-        </div>
-      </section>
+      </div>
     </main>
   )
 }
