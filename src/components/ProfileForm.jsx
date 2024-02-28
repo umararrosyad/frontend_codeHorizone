@@ -24,6 +24,9 @@ export default function Account() {
         </div>
         <h1 className="text-sm font-bold">Email</h1>
         <div className="w-3/5 mb-8">
+
+
+          
           <Input label="email" />
         </div>
         <h1 className="text-sm font-bold">Tanggal Lahir</h1>
