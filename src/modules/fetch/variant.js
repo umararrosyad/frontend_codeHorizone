@@ -11,14 +11,30 @@ const getAllVariant = async (id) => {
   }
 };
 
+const getAllVariantdetail = async (id, product_type_id, product_size_id) => {
+  console.log(product_type_id, product_size_id);
+  try {
+    const params = {
+      product_type_id: product_type_id,
+      product_size_id: product_size_id
+    };
+    const response = await axios.get(`/api/v1/products/${id}/variants/detail`, {params}, {
+      headers: { "Content-Type": "application/json" }
+    });
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
 const getOneProducts = async (id) => {
-    try {
-      const response = await axios.get(`/api/v1/products/${id}`);
-      return response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  try {
+    const response = await axios.get(`/api/v1/products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const createProducts = async (name, category_id, werehouse_id, description) => {
   try {
@@ -29,10 +45,10 @@ const createProducts = async (name, category_id, werehouse_id, description) => {
       description
     };
     const response = await axios.post("/api/v1/products", requestData, {
-        headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" }
     });
     console.log(requestData);
-    
+
     console.log(response);
     return response;
   } catch (error) {
@@ -43,7 +59,9 @@ const createProducts = async (name, category_id, werehouse_id, description) => {
 const updateVariant = async (id, variant_id, weight, price, stock) => {
   try {
     const requestData = {
-        weight, price, stock
+      weight,
+      price,
+      stock
     };
     const response = await axios.put(`/api/v1/products/${id}/variants/${variant_id}`, requestData, {
       headers: { "Content-Type": "application/json" }
@@ -66,4 +84,4 @@ const deleteProducts = async (id) => {
   }
 };
 
-module.exports = { getAllVariant, createProducts,getOneProducts, updateVariant, deleteProducts };
+module.exports = { getAllVariantdetail, getAllVariant, createProducts, getOneProducts, updateVariant, deleteProducts };

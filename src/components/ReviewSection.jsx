@@ -1,6 +1,6 @@
-import React from 'react'
-import { Rating } from '@material-tailwind/react'
-import Link from 'next/link'
+import React from "react";
+import { Rating } from "@material-tailwind/react";
+import Link from "next/link";
 
 export default function ReviewSection() {
   return (
@@ -23,59 +23,41 @@ export default function ReviewSection() {
             </li>
             <li>
               <div>
-                <h1 className="py-2 px-2 bg-primary text-white rounded-md">
-                  Bintang 5
-                </h1>
+                <h1 className="py-2 px-2 bg-primary text-white rounded-md">Bintang 5</h1>
               </div>
             </li>
             <li>
               <div>
-                <h1 className="py-2 px-2 bg-primary text-white rounded-md">
-                  Bintang 4
-                </h1>
+                <h1 className="py-2 px-2 bg-primary text-white rounded-md">Bintang 4</h1>
               </div>
             </li>
             <li>
               <div>
-                <h1 className="py-2 px-2 bg-primary text-white rounded-md">
-                  Bintang 3
-                </h1>
+                <h1 className="py-2 px-2 bg-primary text-white rounded-md">Bintang 3</h1>
               </div>
             </li>
             <li>
               <div>
-                <h1 className="py-2 px-2 bg-primary text-white rounded-md">
-                  Bintang 2
-                </h1>
+                <h1 className="py-2 px-2 bg-primary text-white rounded-md">Bintang 2</h1>
               </div>
             </li>
             <li>
               <div>
-                <h1 className="py-2 px-2 bg-primary text-white rounded-md">
-                  Bintang 1
-                </h1>
+                <h1 className="py-2 px-2 bg-primary text-white rounded-md">Bintang 1</h1>
               </div>
             </li>
             <li>
-              <li>
-                <div>
-                  <h1 className="text-lg font-bold">
-                    Have you tried this product?{' '}
-                  </h1>
-                  <span>
-                    Puas dengan produk yang kamu beli? Bagikan reviewmu
-                  </span>
-                  <Link href="/checkout">
-                    <button className="bg-primary text-white font-bold py-2 px-4 rounded-full mt-4 w-4/5">
-                      Add review
-                    </button>
-                  </Link>
-                </div>
-              </li>
+              <div>
+                <h1 className="text-lg font-bold">Have you tried this product? </h1>
+                <span>Puas dengan produk yang kamu beli? Bagikan reviewmu</span>
+                <Link href="/checkout">
+                  <button className="bg-primary text-white font-bold py-2 px-4 rounded-full mt-4 w-4/5">Add review</button>
+                </Link>
+              </div>
             </li>
           </ul>
         </div>
       </div>
     </section>
-  )
+  );
 }

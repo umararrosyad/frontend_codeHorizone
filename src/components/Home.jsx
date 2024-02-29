@@ -11,17 +11,20 @@ import axios from "axios";
 import ProductList from "@/components/ProductList";
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  const [bestSeller, setBestSeller] = useState([]);
+  const [bestRating, setBestRating] = useState([]);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const dataProducts = await getAllProducts();
+        const rating = await getAllProducts("", "", "", "rating", "5");
+        const seller = await getAllProducts("", "", "", "total_sold", "5");
         const dataCategories = await getAllCategories();
-        console.log("response", dataProducts);
-        console.log("response", dataCategories);
-        setProducts(dataProducts.data);
+        console.log("response", rating);
+        console.log("response", seller);
+        setBestRating(rating.data);
+        setBestSeller(seller.data);
         setCategories(dataCategories.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -30,15 +33,14 @@ export default function Home() {
 
     fetchData();
   }, []);
-  console.log(products);
-  console.log(categories);
+
   return (
     <>
       <Head>
         <title>Aleesha</title>
       </Head>
 
-      <main>
+      <main className="bg-gray-50">
         <Navbar />
         <div className="flex flex-col items-center">
           <div>
@@ -95,11 +97,7 @@ export default function Home() {
             </div>
           </div>
           <div className="w-full px-10 ">
-            <div className=" grid grid-cols-2 md:grid-cols-5 gap-5">
-              {products.map((products) => (
-                <ProductList key={products.id} products={products} />
-              ))}
-            </div>
+            <div className=" grid grid-cols-2 md:grid-cols-5 gap-5">{bestSeller.map((products) => products.min_price != 0 && <ProductList key={products.id} products={products} />)}</div>
           </div>
           <div className="w-full px-10 mt-5 p-5">
             <div className="flex flex-row justify-center item-center w-full rounded-lg bg-primary h-auto py-5">
@@ -142,7 +140,7 @@ export default function Home() {
           </div>
           <div className="w-full px-10 mb-10 ">
             <div className=" grid grid-cols-2 md:grid-cols-5 gap-5">
-              {products.map((products) => (
+              {bestRating.map((products) => (
                 <ProductList key={products.id} products={products} />
               ))}
             </div>

@@ -2,11 +2,14 @@
 
 import { instance as axios } from "../axios";
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcwNjc5MDczNn0.crNpraUq0j84lSvWzqQAVdmx1JOWsZmRa4kwpChEpZU";
-const getAllProducts = async (page, searchTerm) => {
+const getAllProducts = async (page, searchTerm, category_id, short, limit) => {
   try {
     const params = {
       page,
-      name: searchTerm
+      name: searchTerm,
+      category_id,
+      short,
+      limit
     };
     const response = await axios.get("/api/v1/products/", { params });
     return response.data;
@@ -16,13 +19,13 @@ const getAllProducts = async (page, searchTerm) => {
 };
 
 const getOneProducts = async (id) => {
-    try {
-      const response = await axios.get(`/api/v1/products/${id}`);
-      return response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  try {
+    const response = await axios.get(`/api/v1/products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const createProducts = async (name, category_id, werehouse_id, description) => {
   try {
@@ -33,10 +36,10 @@ const createProducts = async (name, category_id, werehouse_id, description) => {
       description
     };
     const response = await axios.post("/api/v1/products", requestData, {
-        headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" }
     });
     console.log(requestData);
-    
+
     console.log(response);
     return response;
   } catch (error) {
@@ -73,4 +76,4 @@ const deleteProducts = async (id) => {
   }
 };
 
-module.exports = { getAllProducts, createProducts,getOneProducts, updateProducts, deleteProducts };
+module.exports = { getAllProducts, createProducts, getOneProducts, updateProducts, deleteProducts };
