@@ -18,9 +18,51 @@ const getAllVariantdetail = async (id, product_type_id, product_size_id) => {
       product_type_id: product_type_id,
       product_size_id: product_size_id
     };
-    const response = await axios.get(`/api/v1/products/${id}/variants/detail`, {params}, {
-      headers: { "Content-Type": "application/json" }
-    });
+    const response = await axios.get(
+      `/api/v1/products/${id}/variants/detail`,
+      { params },
+      {
+        headers: { "Content-Type": "application/json" }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+const getAllVariantType = async (id, product_type_id) => {
+  try {
+    const params = {
+      product_type_id: product_type_id
+    };
+
+    const response = await axios.get(
+      `/api/v1/products/${id}/variants/type`,
+      { params },
+      {
+        headers: { "Content-Type": "application/json" }
+      }
+      );
+      console.log(response);
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+const getAllVariantSize = async (id, product_size_id) => {
+  try {
+    const params = {
+      product_size_id: product_size_id
+    };
+    const response = await axios.get(
+      `/api/v1/products/${id}/variants/size`,
+      { params },
+      {
+        headers: { "Content-Type": "application/json" }
+      }
+    );
     return response.data;
   } catch (error) {
     return error.response.data;
@@ -84,4 +126,4 @@ const deleteProducts = async (id) => {
   }
 };
 
-module.exports = { getAllVariantdetail, getAllVariant, createProducts, getOneProducts, updateVariant, deleteProducts };
+module.exports = { getAllVariantdetail, getAllVariantType, getAllVariantSize, getAllVariant, createProducts, getOneProducts, updateVariant, deleteProducts };
