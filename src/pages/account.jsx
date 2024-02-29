@@ -1,28 +1,37 @@
-import React from 'react'
-import Navbar from '@/components/Navbar'
-import ProfileForm from '@/components/ProfileForm'
-import Sidebar from '@/components/Sidebar'
-import Footer from '@/components/Footer'
+"use client";
+import Navbar from "@/components/Navbar";
+import ProfileForm from "@/components/ProfileForm";
+import Sidebar from "@/components/Sidebar";
+import SidebarMini from "@/components/SidebarMobile";
+import Footer from "@/components/Footer";
+import { getUser } from "@/modules/fetch/user";
+import React, { useEffect, useState } from "react";
 
 export default function accountpage() {
   return (
     <>
       <main className="bg-bgSecondary">
-        <section>
+        <div>
           <div className="container">
             <Navbar></Navbar>
           </div>
-        </section>
-        <section>
-          <div className="container flex space-x-3 mx-auto pt-48 mb-64">
-            <Sidebar />
-            <ProfileForm />
+        </div>
+        <div>
+          <div className="flex  gap-6  mx-5 md:mx-10 pt-28 mb-10">
+            <div className="hidden md:block">
+              <Sidebar sideLocation={"profil"} />
+            </div>
+            {/* SidebarMini */}
+            <div className="md:hidden">
+              <SidebarMini />
+            </div>
+            <ProfileForm sideLocation={"profil"} />
           </div>
-        </section>
+        </div>
         <section>
           <Footer />
         </section>
       </main>
     </>
-  )
+  );
 }

@@ -1,15 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const counterSlice = createSlice({
-  name: 'sidebar',
+  name: "sidebar",
   initialState: {
-    user_id: "",
+    sideLocation: "profil",
+    productLocation: "product"
   },
   reducers: {
-    setUser: (state, action) => {
-      state.user_id = action.payload
+    setSideLocation: (state, action) => {
+      state.sideLocation = action.payload;
     },
-  },
+    setProductLocation: (state, action) => {
+      state.productLocation = action.payload;
+    },
+    decrement: (state) => {
+      state.value -= 1;
+    }
+  }
 });
 
 export const { setSideLocation, setProductLocation } = counterSlice.actions;

@@ -12,7 +12,6 @@ export default function Navbar() {
 
   if (typeof window !== "undefined") {
     var getToken = window.localStorage.getItem("token");
-    console.log(getToken);
   }
 
   useEffect(() => {
@@ -25,14 +24,14 @@ export default function Navbar() {
   }, [getToken]);
 
   return (
-    <div className="fixed w-full p-5 z-10 bg-primary">
+    <div className="fixed w-full p-5 z-10 border-b-2 border-white bg-primary">
       <div className="flex flex-row items-center mx-5 gap-5">
         <div>
           <Link href={"/"}>
             <Image src={logo} width={200} height={80} alt="/" />
           </Link>
         </div>
-        <div className="w-full mx-20">
+        <div className="w-full md:mx-20">
           <form className="flex items-center">
             <label htmlFor="simple-search" className="sr-only">
               Search
