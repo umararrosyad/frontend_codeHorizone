@@ -15,7 +15,7 @@ export default function Navbar() {
   const [isLogin, setIsLogin] = useState(false);
   // const [Users, setUsers] = useState([]);
 
-
+  const router = useRouter();
   const { name, category, short } = router.query;
 
   const dispatch = useDispatch();
@@ -23,7 +23,6 @@ export default function Navbar() {
   const category_q = useSelector((state) => state.search.category);
   const limit_q = useSelector((state) => state.search.limit);
   const short_q = useSelector((state) => state.search.short);
-  let getToken;
   if (typeof window !== "undefined") {
     var getToken = window.localStorage.getItem("token");
     var getID = window.localStorage.getItem("user_id");
@@ -52,7 +51,7 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="w-full md:mx-20">
-          <form className="flex items-center" onSubmit={handleSearch}>
+          <form className="flex items-center">
             <label htmlFor="search" className="sr-only">
               Search
             </label>

@@ -7,12 +7,14 @@ import { getAllVariantdetail } from "@/modules/fetch/variant";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { MdOutlineQueryStats } from "react-icons/md";
 
 export default function ProductDetail({ productDetail }) {
   // console.log(productDetail);
   const [type, setType] = useState();
   const [size, setSize] = useState();
   const [variant, setVariant] = useState();
+  const [qty, setQty] = useState(0);
 
   const router = useRouter();
 
@@ -81,79 +83,6 @@ export default function ProductDetail({ productDetail }) {
   }
 
   return (
-<<<<<<< HEAD
-    <section className="w-full overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
-      <div className="max-wl px-4 py-4 mx-auto lg:py-8 md:px-6">
-        <div className="flex flex-wrap -mx-4">
-          <div className="w-full px-4 md:w-1/2 ">
-            <div className="sticky top-0 overflow-hidden ">
-              <div className="relative mb-6 lg:mb-10 lg:h-2/4 ">
-                <Image
-                  src={productDetail?.product_galleries[0].photo_url}
-                  alt="Main Photo"
-                  className="object-cover w-[600px] h-[600px] lg:h-full "
-                  width={350}
-                  height={350}
-                />
-              </div>
-              <div className="flex-wrap hidden md:flex ">
-                <div className="w-1/4 p-4">
-                  <Link
-                    href="#"
-                    className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                  >
-                    <Image
-                      src="/images/productdetail_1.png"
-                      alt="Detail 1"
-                      className="object-cover w-[100px] h-[100px] lg:h-20"
-                      width={150}
-                      height={150}
-                    />
-                  </Link>
-                </div>
-                <div className="w-1/2 p-2 sm:w-1/4">
-                  <Link
-                    href="#"
-                    className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                  >
-                    <Image
-                      src="/images/product_1.png"
-                      alt=""
-                      className="object-cover w-[100px] h[100px] lg:h-20"
-                      width={150}
-                      height={150}
-                    />
-                  </Link>
-                </div>
-                <div className="w-1/2 p-2 sm:w-1/4">
-                  <Link
-                    href="#"
-                    className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                  >
-                    <Image
-                      src="/images/productdetail_1.png"
-                      alt=""
-                      className="object-cover w-[100px] h[100px] lg:h-20"
-                      width={150}
-                      height={150}
-                    />
-                  </Link>
-                </div>
-                <div className="w-1/2 p-2 sm:w-1/4">
-                  <Link
-                    href="#"
-                    className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
-                  >
-                    <Image
-                      src="/images/productdetail_1.png"
-                      alt=""
-                      className="object-cover w-[100px] h[100px] lg:h-20"
-                      width={150}
-                      height={150}
-                    />
-                  </Link>
-                </div>
-=======
     <div className="w-full">
       <section className="w-full overflow-hidden border-2  shadow-xl rounded-lg mb-5 border-gray-200 bg-white font-poppins dark:bg-gray-800">
         <div className="max-wl p-5">
@@ -161,7 +90,6 @@ export default function ProductDetail({ productDetail }) {
             <div className="w-full max-w-md mb-5">
               <div className=" ">
                 <CarouselDefault />
->>>>>>> d355a83f35655ac36a5b147aaced8bdf94f67d9c
               </div>
             </div>
             <div className="w-full  border-2 border-primary rounded-lg  ">
@@ -264,15 +192,17 @@ export default function ProductDetail({ productDetail }) {
                 <div className="w-32 ps-4 mb-8 ">
                   <h2 className=" text-md font-semibold dark:text-gray-400">Quantity</h2>
                   <div className="relative flex flex-row w-full h-10 bg-button border rounded-full">
-                    <button className="w-20 h-full text-gray-600 bg-gray-100 rounded-l outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 hover:text-gray-700 dark:bg-gray-900 hover:bg-gray-400">
+                    <button
+                      className="w-20 h-full text-gray-600 bg-gray-100 rounded-l outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 hover:text-gray-700 dark:bg-gray-900 hover:bg-gray-400"
+                      onClick={() => setQty(qty - 1)}
+                    >
                       <span className="m-auto text-2xl font-thin">-</span>
                     </button>
-                    <input
-                      type="number"
-                      className="flex items-center w-full border font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-50 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black"
-                      placeholder="1"
-                    />
-                    <button className="w-20 h-full text-gray-600 bg-gray-100 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-900 hover:text-gray-700 hover:bg-gray-400">
+                    <div className="text-md self-center m-2 font-bold">{qty}</div>
+                    <button
+                      className="w-20 h-full text-gray-600 bg-gray-100 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-900 hover:text-gray-700 hover:bg-gray-400"
+                      onClick={() => setQty(qty + 1)}
+                    >
                       <span className="m-auto text-2xl font-thin">+</span>
                     </button>
                   </div>
