@@ -3,14 +3,30 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { getAllProducts, createProducts, getOneProducts, updateProducts, deleteProducts } from "@/modules/fetch/products";
 import { getAllCategories } from "@/modules/fetch/categories";
+import { useSelector, useDispatch } from "react-redux";
+import { setCategory, setName, setLimit, setShort } from "@/store/reducers/search";
+import { useRouter } from "next/router";
 
 export default function FilterBar() {
   const [products, setProducts] = useState();
   const [categories, setCategories] = useState();
 
+  const router = useRouter();
+
+  const { name, category, short } = router.query;
+  const dispatch = useDispatch();
+  const name_q = useSelector((state) => state.search.name);
+  const category_q = useSelector((state) => state.search.category);
+  const limit_q = useSelector((state) => state.search.limit);
+  const short_q = useSelector((state) => state.search.short);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        dispatch(setName(name));
+        console.log(name_q);
+        dispatch(setCategory(category));
+        dispatch(setLimit(short));
         const dataProducts = await getAllProducts();
         const dataCategories = await getAllCategories();
         console.log("response", dataProducts);
@@ -23,10 +39,39 @@ export default function FilterBar() {
     };
 
     fetchData();
-  }, []);
+  }, [name, category, short]);
+
+  function handleCategory(id) {
+    if (id == category_q) {
+      router.push({
+        pathname: "/search",
+        query: { name: name_q, category: "", short: short_q }
+      });
+    } else {
+      router.push({
+        pathname: "/search",
+        query: { name: name_q, category: id, short: short_q }
+      });
+    }
+  }
+
+  function handleShort(short) {
+    if (limit_q == short) {
+      router.push({
+        pathname: "/search",
+        query: { name: name_q, category: category_q, short: "" }
+      });
+    } else {
+      router.push({
+        pathname: "/search",
+        query: { name: name_q, category: category_q, short: short }
+      });
+    }
+  }
+
   return (
-    <div className="flex w-1/4 max-w-sm">
-      <div className="flex flex-col bg-peach w-full p-4 shadow-xl rounded-md border-2 border-primary shadow-blue-gray-900/5 mb-7">
+    <div className="flex w-1/4 h-full max-w-sm">
+      <div className="flex flex-col w-full p-4 shadow-xl rounded-md border-2 border-primary shadow-blue-gray-900/5 mb-7">
         <h1 className=" text-lg font-bold">Filter</h1>
         <hr class="h-px bg-primary border-0 mb-3 dark:bg-gray-700" />
         <div className="mb-3">
@@ -34,55 +79,45 @@ export default function FilterBar() {
           <ul class="flex-column w-full space-y ps-3 space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
             {categories?.map((item) => (
               <li>
-                <a href="#" class="inline-flex border border-primary items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                <button
+                  class={`inline-flex ${item?.id == category_q ? "text-white bg-primary" : "border border-primary hover:text-gray-900  hover:bg-gray-100 bg-gray-50"}  items-center px-4 py-3 rounded-lg  w-full `}
+                  onClick={() => handleCategory(item?.id)}
+                >
                   {item?.category_name}
-                </a>
+                </button>
               </li>
             ))}
-            {/* <li>
-              <a href="#" class="inline-flex items-center px-4  py-3 text-white bg-primary rounded-lg active w-full dark:bg-blue-600" aria-current="page">
-                Kebutuhan Lainnya
-              </a>
-            </li>
-            <li>
-              <a href="#" class="inline-flex border border-primary items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
-                Dashboard
-              </a>
-            </li>
-            <li>
-              <a href="#" class="inline-flex border border-primary items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
-                Settings
-              </a>
-            </li>
-            <li>
-              <a href="#" class="inline-flex border border-primary items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
-                Contact
-              </a>
-            </li> */}
           </ul>
         </div>
         <div className="mb-3">
           <h1 className="text-lg mb-3 font-bold">Short By</h1>
-          <ul class="flex-column space-y w-full ps-3 space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
+          <ul class="flex flex-col w-full ps-3 space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
             <li>
-              <a href="#" class="inline-flex items-center ps-4 pe-20 py-3 text-white bg-primary rounded-lg active w-full dark:bg-blue-600" aria-current="page">
-                Price
-              </a>
+              <button
+                class={`inline-flex ${short_q == "price" ? "text-white bg-primary" : "border border-primary hover:text-gray-900  hover:bg-gray-100 bg-gray-50"}  items-center px-4 py-3 rounded-lg  w-full `}
+                aria-current="page"
+                onClick={() => handleShort("price")}
+              >
+                Best Price
+              </button>
             </li>
             <li>
-              <a href="#" class="inline-flex border border-primary items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
-                Rating
-              </a>
+              <button
+                class={`inline-flex  ${short_q == "rating" ? "text-white bg-primary" : "border border-primary hover:text-gray-900  hover:bg-gray-100 bg-gray-50"}  items-center px-4 py-3 rounded-lg  w-full `}
+                onClick={() => handleShort("rating")}
+              >
+                Best Rating
+              </button>
             </li>
             <li>
-              <a href="#" class="inline-flex border border-primary items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+              <button
+                class={`inline-flex  ${short_q == "total_sold" ? "text-white bg-primary" : "border border-primary hover:text-gray-900  hover:bg-gray-100 bg-gray-50"}  items-center px-4 py-3 rounded-lg  w-full `}
+                onClick={() => handleShort("total_sold")}
+              >
                 Best Seller
-              </a>
+              </button>
             </li>
           </ul>
-        </div>
-        <div>
-          <button className="bg-primary text-white font-bold py-2 px-4 rounded-full mt-4 w-full">Terapkan Filter</button>
         </div>
       </div>
     </div>

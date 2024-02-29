@@ -15,10 +15,9 @@ const renderStars = (rating) => {
   return stars;
 };
 export default function ProductList({ products }) {
-  console.log(products);
   return (
     <Link href={`/product/${products.id}`}>
-      <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div class="w-full max-w-sm bg-white border-2 border-gray-300 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
         <a href="#" className="">
           {/* <img class="rounded-t-lg object-cover" src={products?.product_galleries[0]?.photo_url} alt="product image" /> */}
           <img className="rounded-t-lg mx-auto object-contain" style={{ height: "200px", objectFit: "cover" }} src={products?.product_galleries[0]?.photo_url} alt="" />

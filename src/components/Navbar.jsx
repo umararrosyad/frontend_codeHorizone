@@ -6,22 +6,47 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GoSearch } from "react-icons/go";
 import NavbarBottom from "./NavbarBottom";
+import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import { setCategory, setName, setLimit, setShort } from "@/store/reducers/search";
 
 export default function Navbar() {
   const [isLogin, setIsLogin] = useState(false);
+  const router = useRouter();
 
+  const { name, category, short } = router.query;
+
+  const dispatch = useDispatch();
+  const name_q = useSelector((state) => state.search.name);
+  const category_q = useSelector((state) => state.search.category);
+  const limit_q = useSelector((state) => state.search.limit);
+  const short_q = useSelector((state) => state.search.short);
+  let getToken;
   if (typeof window !== "undefined") {
-    var getToken = window.localStorage.getItem("token");
+    getToken = window.localStorage.getItem("token");
   }
 
   useEffect(() => {
-    const token = getToken;
-    if (token) {
+    dispatch(setName(name));
+    dispatch(setCategory(category));
+    dispatch(setShort(short));
+
+    if (getToken) {
       setIsLogin(true);
     } else {
       setIsLogin(false);
     }
-  }, [getToken]);
+  }, [getToken, name, category, short]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const name = e.target.elements.search.value;
+    console.log(name);
+    router.push({
+      pathname: "/search",
+      query: { name: name, category: category, short : short }
+    });
+  };
 
   return (
     <div className="fixed w-full p-5 z-10 border-b-2 border-white bg-primary">
@@ -32,14 +57,16 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="w-full md:mx-20">
-          <form className="flex items-center">
-            <label htmlFor="simple-search" className="sr-only">
+          <form className="flex items-center" onSubmit={handleSearch}>
+            <label htmlFor="search" className="sr-only">
               Search
             </label>
             <div className="relative w-full">
               <input
                 type="text"
-                id="simple-search"
+                id="search"
+                name="search"
+                defaultValue={name_q}
                 className="bg-gray-50 border ps-6 border-gray-300 text-gray-900 text-sm rounded-full focus:ring-primary-500 focus:border-primary-500 block w-full pl-2 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="Search"
                 required=""

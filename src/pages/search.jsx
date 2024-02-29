@@ -15,16 +15,13 @@ export default function searchresult() {
           </div>
         </div>
         <div>
-          <div className=" flex space-x-3 mx-10 pt-28 gap-3 mb-64">
+          <div className=" flex space-x-3 mx-10 mb-5 pt-28 gap-3">
             <FilterBar />
+            {/* <div className="">
+            </div> */}
             <SearchProduct />
           </div>
         </div>
-        {/* <div>
-          <div className=" flex space-x-3 mx-auto pt-48 mb-64">
-            <ProductCard />
-          </div>
-        </div> */}
         <div>
           <Footer />
         </div>
