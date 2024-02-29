@@ -29,9 +29,9 @@ const RegisterForm = () => {
     const name = event.target.elements.name.value;
     const telp = event.target.elements.telp.value;
     const username = event.target.elements.username.value;
-
+ 
     try {
-      console.log(email);
+      console.log(username);
       const response = await register(email, pass, name, telp, username);
       console.log(response.data.status);
       event.target.reset();

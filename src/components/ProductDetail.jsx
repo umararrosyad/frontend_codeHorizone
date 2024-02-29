@@ -83,6 +83,79 @@ export default function ProductDetail({ productDetail }) {
   }
 
   return (
+<<<<<<< HEAD
+    <section className="w-full overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
+      <div className="max-wl px-4 py-4 mx-auto lg:py-8 md:px-6">
+        <div className="flex flex-wrap -mx-4">
+          <div className="w-full px-4 md:w-1/2 ">
+            <div className="sticky top-0 overflow-hidden ">
+              <div className="relative mb-6 lg:mb-10 lg:h-2/4 ">
+                <Image
+                  src={productDetail?.product_galleries[0].photo_url}
+                  alt="Main Photo"
+                  className="object-cover w-[600px] h-[600px] lg:h-full "
+                  width={350}
+                  height={350}
+                />
+              </div>
+              <div className="flex-wrap hidden md:flex ">
+                <div className="w-1/4 p-4">
+                  <Link
+                    href="#"
+                    className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
+                  >
+                    <Image
+                      src="/images/productdetail_1.png"
+                      alt="Detail 1"
+                      className="object-cover w-[100px] h-[100px] lg:h-20"
+                      width={150}
+                      height={150}
+                    />
+                  </Link>
+                </div>
+                <div className="w-1/2 p-2 sm:w-1/4">
+                  <Link
+                    href="#"
+                    className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
+                  >
+                    <Image
+                      src="/images/product_1.png"
+                      alt=""
+                      className="object-cover w-[100px] h[100px] lg:h-20"
+                      width={150}
+                      height={150}
+                    />
+                  </Link>
+                </div>
+                <div className="w-1/2 p-2 sm:w-1/4">
+                  <Link
+                    href="#"
+                    className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
+                  >
+                    <Image
+                      src="/images/productdetail_1.png"
+                      alt=""
+                      className="object-cover w-[100px] h[100px] lg:h-20"
+                      width={150}
+                      height={150}
+                    />
+                  </Link>
+                </div>
+                <div className="w-1/2 p-2 sm:w-1/4">
+                  <Link
+                    href="#"
+                    className="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
+                  >
+                    <Image
+                      src="/images/productdetail_1.png"
+                      alt=""
+                      className="object-cover w-[100px] h[100px] lg:h-20"
+                      width={150}
+                      height={150}
+                    />
+                  </Link>
+                </div>
+=======
     <div className="w-full">
       <section className="w-full overflow-hidden border-2  shadow-xl rounded-lg mb-5 border-gray-200 bg-white font-poppins dark:bg-gray-800">
         <div className="max-wl p-5">
@@ -90,6 +163,7 @@ export default function ProductDetail({ productDetail }) {
             <div className="w-full max-w-md mb-5">
               <div className=" ">
                 <CarouselDefault />
+>>>>>>> d355a83f35655ac36a5b147aaced8bdf94f67d9c
               </div>
             </div>
             <div className="w-full  border-2 border-primary rounded-lg  ">

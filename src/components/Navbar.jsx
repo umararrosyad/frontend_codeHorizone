@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import logo from "../../public/images/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { getUser } from "@/modules/fetch/user";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GoSearch } from "react-icons/go";
@@ -12,7 +13,8 @@ import { setCategory, setName, setLimit, setShort } from "@/store/reducers/searc
 
 export default function Navbar() {
   const [isLogin, setIsLogin] = useState(false);
-  const router = useRouter();
+  // const [Users, setUsers] = useState([]);
+
 
   const { name, category, short } = router.query;
 
@@ -23,30 +25,23 @@ export default function Navbar() {
   const short_q = useSelector((state) => state.search.short);
   let getToken;
   if (typeof window !== "undefined") {
-    getToken = window.localStorage.getItem("token");
+    var getToken = window.localStorage.getItem("token");
+    var getID = window.localStorage.getItem("user_id");
   }
 
-  useEffect(() => {
-    dispatch(setName(name));
-    dispatch(setCategory(category));
-    dispatch(setShort(short));
 
-    if (getToken) {
+  useEffect(() => {
+    
+    const token = getToken;
+    if (token) {
       setIsLogin(true);
     } else {
       setIsLogin(false);
     }
-  }, [getToken, name, category, short]);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const name = e.target.elements.search.value;
-    console.log(name);
-    router.push({
-      pathname: "/search",
-      query: { name: name, category: category, short : short }
-    });
-  };
+  }, [getToken]);
+
+
 
   return (
     <div className="fixed w-full p-5 z-10 border-b-2 border-white bg-primary">
@@ -95,7 +90,7 @@ export default function Navbar() {
 
         {isLogin && (
           <div>
-            <Link href="/account">
+            <Link href={`/account/${getID}`}>
               <div class="w-8 h-8 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                 <img class="w-8 h-8 rounded-full" src="https://static-00.iconduck.com/assets.00/user-icon-1024x1024-dtzturco.png" alt="Rounded avatar" />
               </div>
