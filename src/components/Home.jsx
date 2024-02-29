@@ -40,7 +40,7 @@ export default function Home() {
         <title>Aleesha</title>
       </Head>
 
-      <main>
+      <main className="bg-gray-50">
         <Navbar />
         <div className="flex flex-col items-center">
           <div>
@@ -97,11 +97,7 @@ export default function Home() {
             </div>
           </div>
           <div className="w-full px-10 ">
-            <div className=" grid grid-cols-2 md:grid-cols-5 gap-5">
-              {bestSeller.map((products) => (
-                <ProductList key={products.id} products={products} />
-              ))}
-            </div>
+            <div className=" grid grid-cols-2 md:grid-cols-5 gap-5">{bestSeller.map((products) => products.min_price != 0 && <ProductList key={products.id} products={products} />)}</div>
           </div>
           <div className="w-full px-10 mt-5 p-5">
             <div className="flex flex-row justify-center item-center w-full rounded-lg bg-primary h-auto py-5">

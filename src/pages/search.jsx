@@ -8,7 +8,7 @@ import ProductCard from "@/components/ProductCard";
 export default function searchresult() {
   return (
     <>
-      <main className="bg-white">
+      <main className="bg-gray-50">
         <div>
           <div className="">
             <Navbar></Navbar>
