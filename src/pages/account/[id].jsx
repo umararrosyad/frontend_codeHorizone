@@ -8,6 +8,28 @@ import { getUser } from "@/modules/fetch/user";
 import React, { useEffect, useState } from "react";
 
 export default function accountpage() {
+  
+  if (typeof window !== "undefined") {
+    var getToken = window.localStorage.getItem("token");
+    var getID = window.localStorage.getItem("user_id");
+  }
+
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const dataUsers = await getUser(getID);
+        //console.log("response", dataUsers);
+        setUsers(dataUsers.data);
+      } catch (error) {
+        //console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  //console.log(users.data);
+
   return (
     <>
       <main className="bg-bgSecondary">
@@ -25,7 +47,8 @@ export default function accountpage() {
             <div className="md:hidden">
               <SidebarMini />
             </div>
-            <ProfileForm sideLocation={"profil"} />
+            {users && <ProfileForm sideLocation={"profil"} users={users}/>}
+
           </div>
         </div>
         <section>

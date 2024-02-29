@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import logo from "../../public/images/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { getUser } from "@/modules/fetch/user";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GoSearch } from "react-icons/go";
@@ -9,19 +10,27 @@ import NavbarBottom from "./NavbarBottom";
 
 export default function Navbar() {
   const [isLogin, setIsLogin] = useState(false);
+  // const [Users, setUsers] = useState([]);
+
 
   if (typeof window !== "undefined") {
     var getToken = window.localStorage.getItem("token");
+    var getID = window.localStorage.getItem("user_id");
   }
 
+
   useEffect(() => {
+    
     const token = getToken;
     if (token) {
       setIsLogin(true);
     } else {
       setIsLogin(false);
     }
+
   }, [getToken]);
+
+
 
   return (
     <div className="fixed w-full p-5 z-10 border-b-2 border-white bg-primary">
@@ -68,7 +77,7 @@ export default function Navbar() {
 
         {isLogin && (
           <div>
-            <Link href="/account">
+            <Link href={`/account/${getID}`}>
               <div class="w-8 h-8 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                 <img class="w-8 h-8 rounded-full" src="https://static-00.iconduck.com/assets.00/user-icon-1024x1024-dtzturco.png" alt="Rounded avatar" />
               </div>

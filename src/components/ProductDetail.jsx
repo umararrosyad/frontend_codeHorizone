@@ -13,7 +13,7 @@ export default function ProductDetail({productDetail}) {
             <div className="sticky top-0 overflow-hidden ">
               <div className="relative mb-6 lg:mb-10 lg:h-2/4 ">
                 <Image
-                  src={productDetail.product_galleries[0].photo_url}
+                  src={productDetail?.product_galleries[0].photo_url}
                   alt="Main Photo"
                   className="object-cover w-[600px] h-[600px] lg:h-full "
                   width={350}
